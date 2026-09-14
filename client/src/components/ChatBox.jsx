@@ -32,18 +32,17 @@ const ChatBox = () => {
             setMessages(prev => [...prev, data.reply])
             // decress credits
             if (mode === 'image'){
-              setUser(prev => ({...prev, credts: prev.credts -2}))
+              setUser(prev => ({...prev, credits: prev.credits -2}))
             }else{
-                setUser(prev => ({...prev, credts: prev.credts -1}))
+                setUser(prev => ({...prev, credits: prev.credits -1}))
             }
            }else{
-            toast.error(data.messages)
+            toast.error(data.message)
             setPrompt(promptCopy)
            }
     } catch (error) {
-        toast.error(error.messages)
+        toast.error(error.message)
     }finally{
-      setPrompt('')
       setLoading(false)
     }
     

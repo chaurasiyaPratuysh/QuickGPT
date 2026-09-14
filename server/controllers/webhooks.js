@@ -30,8 +30,11 @@ export const stripeWebhooks = async (request, response)=> {
                         transactionId, isPaid: false })
 
                         // Update credits in user account
-                        await User.updateOne({_id: transaction.userId}, {$inc:
-                             {credits: transaction.credits }})
+                        const user = await User.findById(transaction.userId);
+                        if (user) {
+                            user.credits = (Number(user.credits) || 0) + Number(transaction.credits);
+                            await user.save();
+                        }
 
                         //Update credits in payment status
                         transaction.isPaid = true;

@@ -12,7 +12,7 @@ const Login = () => {
 
     const handleSubmit = async (e) =>{
       e.preventDefault();
-      const url = state === "login" ? '/api/user/login' : 'api/user/register'
+      const url = state === "login" ? '/api/user/login'  : '/api/user/register'
 
       try {
         const {data} = await axios.post(url, {name, email, password})
