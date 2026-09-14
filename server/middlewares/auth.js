@@ -9,7 +9,7 @@ export const protect = async (req, res, next) => {
     }
 
     try {
-        const decode = jwt.verify(token, process.env.JWT_SECRET);
+        const decode = jwt.verify(token, process.env.jWT_SECRET);
         const userId = decode.id;
 
         const user = await User.findById(userId);
